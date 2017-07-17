@@ -48,7 +48,9 @@
   <ItemGroup>
      <Compile Include="Assets\Plugins\iOS\UnityARKit\AR3DOFCameraManager.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\ARPlaneAnchorGameObject.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\CatSpawner.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\DontDestroyOnLoad.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\FoodControl.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARAnchor.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARCamera.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\NativeInterface\ARErrorCode.cs" />
@@ -70,7 +72,6 @@
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARCameraManager.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARCameraNearFar.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARGeneratePlane.cs" />
-     <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARHitTestExample.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARKitControl.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARVideo.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityPointCloudExample.cs" />

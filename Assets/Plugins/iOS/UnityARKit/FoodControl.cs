@@ -1,14 +1,20 @@
-using System;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using System;
 using UnityEngine.EventSystems;
 
 namespace UnityEngine.XR.iOS
 {
-	public class UnityARHitTestExample : MonoBehaviour
-	{
-		public Transform m_HitTransform;
+	public class FoodControl : MonoBehaviour {
 
-        private bool hitResultFound = false;
+		public GameObject foodTemplate;
+		private UnityARCameraManager m_ARCameraManager;
+
+		void Start()
+		{
+			m_ARCameraManager = GameObject.Find("ARCameraManager").GetComponent<UnityARCameraManager>();
+		}
 
         bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
         {
@@ -16,35 +22,24 @@ namespace UnityEngine.XR.iOS
             if (hitResults.Count > 0) {
                 foreach (var hitResult in hitResults) {
                     Debug.Log ("Got hit!");
-                    m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
-                    m_HitTransform.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);
-                    Debug.Log (string.Format ("x:{0:0.######} y:{1:0.######} z:{2:0.######}", m_HitTransform.position.x, m_HitTransform.position.y, m_HitTransform.position.z));
-                    hitResultFound = true;
+					GameObject  newFood = GameObject.Instantiate(foodTemplate);
+                    newFood.transform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
                     return true;
                 }
             }
             return false;
         }
-		
+
 		// Update is called once per frame
 		void Update () {
-            if (Time.frameCount > 60 && !hitResultFound) {
-                DetermineAndSetPosition(new Vector3(0,0,0));
-            }
-			// if (Input.touchCount > 0 && m_HitTransform != null)
-			// {
-			// 	var touch = Input.GetTouch(0);
-			// 	if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(0))
-			// 	{
-            //         DetermineAndSetPosition(touch.position);
-			// 	}
-			// }
-		}
+			if (Input.touchCount > 0 && foodTemplate != null)
+			{
+				var touch = Input.GetTouch(0);
+				if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(0))
+				{
+					//transform.localPosition = Vector3.zero;
 
-        private void DetermineAndSetPosition(Vector3 touchPosition) {
-            transform.localPosition = Vector3.zero;
-                    
-					var screenPosition = Camera.main.ScreenToViewportPoint(touchPosition);
+					var screenPosition = Camera.main.ScreenToViewportPoint(touch.position);
 					ARPoint point = new ARPoint {
 						x = screenPosition.x,
 						y = screenPosition.y
@@ -66,9 +61,9 @@ namespace UnityEngine.XR.iOS
                             return;
                         }
                     }
-        }
-
+				}
+			}
+		}
 	
 	}
 }
-
