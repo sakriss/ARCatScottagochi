@@ -531,7 +531,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_HitTransform: {fileID: 168190343}
-  hitResultFound: 0
 --- !u!111 &589252189
 Animation:
   m_ObjectHideFlags: 0
@@ -601,7 +600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 473.70004, y: 33}
+  m_AnchoredPosition: {x: 473.70007, y: 33}
   m_SizeDelta: {x: 144.7, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &682665676

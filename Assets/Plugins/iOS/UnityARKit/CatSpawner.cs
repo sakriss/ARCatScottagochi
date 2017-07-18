@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace UnityEngine.XR.iOS
 {
-	public class UnityARHitTestExample : MonoBehaviour
+	public class CatSpawner : MonoBehaviour
 	{
 		public Transform m_HitTransform;
 
