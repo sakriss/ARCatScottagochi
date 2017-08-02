@@ -3,67 +3,73 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using UnityEngine.XR.iOS;
 
-namespace UnityEngine.XR.iOS
+public class FoodControl : MonoBehaviour
 {
-	public class FoodControl : MonoBehaviour {
 
-		public GameObject foodTemplate;
-		private UnityARCameraManager m_ARCameraManager;
+    public GameObject foodTemplate;
+    private UnityARCameraManager m_ARCameraManager;
 
-		void Start()
-		{
-			m_ARCameraManager = GameObject.Find("ARCameraManager").GetComponent<UnityARCameraManager>();
-		}
+    public List<GameObject> foods;
 
-        bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
+    void Start()
+    {
+        m_ARCameraManager = GameObject.Find("ARCameraManager").GetComponent<UnityARCameraManager>();
+    }
+
+    bool HitTestWithResultType(ARPoint point, ARHitTestResultType resultTypes)
+    {
+        List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point, resultTypes);
+        if (hitResults.Count > 0)
         {
-            List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
-            if (hitResults.Count > 0) {
-                foreach (var hitResult in hitResults) {
-                    Debug.Log ("Got hit!");
-					GameObject  newFood = GameObject.Instantiate(foodTemplate);
-                    newFood.transform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
-                    return true;
-                }
+            foreach (var hitResult in hitResults)
+            {
+                Debug.Log("Got hit!");
+                GameObject newFood = GameObject.Instantiate(foodTemplate);
+                newFood.transform.position = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
+                foods.Add(newFood);
+                return true;
             }
-            return false;
         }
+        return false;
+    }
 
-		// Update is called once per frame
-		void Update () {
-			if (Input.touchCount > 0 && foodTemplate != null)
-			{
-				var touch = Input.GetTouch(0);
-				if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(0))
-				{
-					transform.localPosition = Vector3.zero;
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.touchCount > 0 && foodTemplate != null)
+        {
+            var touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(0))
+            {
+                transform.localPosition = Vector3.zero;
 
-					var screenPosition = Camera.main.ScreenToViewportPoint(touch.position);
-					ARPoint point = new ARPoint {
-						x = screenPosition.x,
-						y = screenPosition.y
-					};
+                var screenPosition = Camera.main.ScreenToViewportPoint(touch.position);
+                ARPoint point = new ARPoint
+                {
+                    x = screenPosition.x,
+                    y = screenPosition.y
+                };
 
-                    // prioritize reults types
-                    ARHitTestResultType[] resultTypes = {
+                // prioritize reults types
+                ARHitTestResultType[] resultTypes = {
                         ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
                         // if you want to use infinite planes use this:
                         //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-                        ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, 
+                        ARHitTestResultType.ARHitTestResultTypeHorizontalPlane,
                         ARHitTestResultType.ARHitTestResultTypeFeaturePoint
-                    }; 
-					
-                    foreach (ARHitTestResultType resultType in resultTypes)
+                    };
+
+                foreach (ARHitTestResultType resultType in resultTypes)
+                {
+                    if (HitTestWithResultType(point, resultType))
                     {
-                        if (HitTestWithResultType (point, resultType))
-                        {
-                            return;
-                        }
+                        return;
                     }
-				}
-			}
-		}
-	
-	}
+                }
+            }
+        }
+    }
+
 }

@@ -514,7 +514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9155f207a190459db9cda560fcb80b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  food: {fileID: 1455388634}
   followDistance: 1.75
+  eatDistance: 0.05
   walkSpeed: 0.1
   cameraToFollow: {fileID: 1238941109}
   maxTime: 15
@@ -600,7 +602,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 473.70007, y: 33}
+  m_AnchoredPosition: {x: 473.70004, y: 33}
   m_SizeDelta: {x: 144.7, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &682665676
@@ -1202,7 +1204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1285582956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1499,6 +1501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodTemplate: {fileID: 1862323879717026, guid: 0eddb4e41d35b440994f5750368fa17f,
     type: 2}
+  foods: []
 --- !u!4 &1455388635
 Transform:
   m_ObjectHideFlags: 0
@@ -1608,7 +1611,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1749130958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.028996512, y: 0.026485015, z: -3.0039062}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -72,6 +72,7 @@
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARCameraManager.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARCameraNearFar.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARGeneratePlane.cs" />
+     <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARHitTestExample.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARKitControl.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityARVideo.cs" />
      <Compile Include="Assets\Plugins\iOS\UnityARKit\UnityPointCloudExample.cs" />
